@@ -7,9 +7,10 @@
     <Version>4.0.0</Version>
     <Authors>Jake Johnson</Authors>
     <AssemblyName>TaxJar</AssemblyName>
-    <PackageId>TaxJar</PackageId>
+    <PackageId>Umbrava.TaxJar</PackageId>
     <PackageTags>sales;tax;taxes;ecommerce</PackageTags>
     <RootNamespace>Taxjar</RootNamespace>
+    <RepositoryUrl>https://github.com/Umbrava/taxjar.net</RepositoryUrl>
     <PackageProjectUrl>https://github.com/taxjar/taxjar.net</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/taxjar/taxjar.net/blob/master/LICENSE.txt</PackageLicenseUrl>
     <ReleaseVersion>4.0.0</ReleaseVersion>
