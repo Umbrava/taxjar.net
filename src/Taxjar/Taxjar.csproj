@@ -13,7 +13,7 @@
     <RepositoryUrl>https://github.com/Umbrava/taxjar.net</RepositoryUrl>
     <PackageProjectUrl>https://github.com/taxjar/taxjar.net</PackageProjectUrl>
     <PackageLicenseUrl>https://github.com/taxjar/taxjar.net/blob/master/LICENSE.txt</PackageLicenseUrl>
-    <ReleaseVersion>4.0.0</ReleaseVersion>
+    <ReleaseVersion>4.0.1</ReleaseVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -28,7 +28,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="RestSharp" Version="108.0.3" />
+    <PackageReference Include="RestSharp" Version="110.2.0" />
   </ItemGroup>
 
 </Project>
