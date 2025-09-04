@@ -87,7 +87,8 @@ namespace Taxjar.Tests
                 timeout = 30 * 1000
             });
 
-            Assert.AreEqual(Bootstrap.client.GetApiConfig("timeout"), 30 * 1000);
+            TimeSpan? timeout = (TimeSpan?)Bootstrap.client.GetApiConfig("timeout");
+            Assert.AreEqual(30 * 1000, timeout?.TotalMilliseconds);
         }
 
         [Test, Order(6)]
@@ -166,7 +167,7 @@ namespace Taxjar.Tests
 
             var systemException = Assert.Throws<Exception>(() => Bootstrap.client.Categories());
 
-            Assert.AreEqual("A task was canceled.", systemException.Message);
+            Assert.AreEqual("The operation was canceled.", systemException.Message);
         }
     }
 }

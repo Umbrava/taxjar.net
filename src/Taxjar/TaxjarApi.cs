@@ -26,14 +26,13 @@ namespace Taxjar
         public string apiToken { get; set; }
         public string apiUrl { get; set; }
         public IDictionary<string, string> headers { get; set; }
-        public int timeout { get; set; }
+        public TimeSpan? timeout { get; set; }
 
         public TaxjarApi(string token, object parameters = null)
         {
             apiToken = token;
             apiUrl = TaxjarConstants.DefaultApiUrl + "/" + TaxjarConstants.ApiVersion + "/";
             headers = new Dictionary<string, string>();
-            timeout = 0; // Milliseconds
 
             if (parameters != null)
             {
@@ -45,12 +44,17 @@ namespace Taxjar
 
                 if (parameters.GetType().GetProperty("headers") != null)
                 {
-                    headers = (IDictionary<string, string>) parameters.GetType().GetProperty("headers").GetValue(parameters);
+                    headers = (IDictionary<string, string>)parameters.GetType().GetProperty("headers").GetValue(parameters);
                 }
 
                 if (parameters.GetType().GetProperty("timeout") != null)
                 {
-                    timeout = (int) parameters.GetType().GetProperty("timeout").GetValue(parameters);
+                    // Timeout is specified in milliseconds.
+                    var timeoutMilliseconds = (int)parameters.GetType().GetProperty("timeout").GetValue(parameters);
+                    if (timeoutMilliseconds > 0)
+                    {
+                        timeout = TimeSpan.FromMilliseconds(timeoutMilliseconds);
+                    }
                 }
             }
 
@@ -185,9 +189,9 @@ namespace Taxjar
             }
 
             return Attribute.IsDefined(type, typeof(CompilerGeneratedAttribute), false)
-                && type.IsGenericType && type.Name.Contains("AnonymousType")
-                && (type.Name.StartsWith("<>") || type.Name.StartsWith("VB$"))
-                && (type.Attributes & TypeAttributes.NotPublic) == TypeAttributes.NotPublic;
+                   && type.IsGenericType && type.Name.Contains("AnonymousType")
+                   && (type.Name.StartsWith("<>") || type.Name.StartsWith("VB$"))
+                   && (type.Attributes & TypeAttributes.NotPublic) == TypeAttributes.NotPublic;
         }
 
         public virtual List<Category> Categories()
